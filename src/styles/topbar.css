@@ -1,0 +1,16 @@
+.topbar {
+    background: #D32F2F;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+.topbar .material-icons {
+    font-size: 30px;
+}

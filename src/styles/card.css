@@ -1,0 +1,23 @@
+.infocard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.infocard .material-icons {
+    background-color: brown;
+    padding: 4px;
+    border-radius: 50%;
+    font-size: 35px;
+}
+
+.infocard .text {
+    font-size: 16px;
+    margin: 3px;
+}
+
+.infocard .value {
+    font-size: 24px;
+}
