@@ -53,7 +53,14 @@ export class App extends Component {
             <InfoCard icon="local_hospital" text="Recovered:" value={this.state.data && this.state.data.recovered ? addComas(this.state.data.recovered.value) : "Not loaded yet"} bgcolor="#00DD3E"/>
             </div>
           </div>
-          
+          <div className="card">
+            <h2>
+              <span className="material-icons">
+                flag
+              </span>
+              Country Stats
+            </h2>
+          </div>
         </div>
       </div>
     )
