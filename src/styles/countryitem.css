@@ -1,0 +1,18 @@
+.countryitem {
+	display: flex;
+}
+
+.left, .right {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.left {
+	width: 40%;
+}
+
+.right {
+	width: 60%;
+	justify-content: space-around;
+}

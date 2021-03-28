@@ -7,10 +7,11 @@
 }
 
 .infocard .material-icons {
-    background-color: brown;
-    padding: 4px;
-    border-radius: 50%;
     font-size: 35px;
+    padding: 4px;
+    background-color: brown;
+    border-radius: 50%;
+
 }
 
 .infocard .text {

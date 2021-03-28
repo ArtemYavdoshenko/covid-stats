@@ -2,10 +2,35 @@ import './App.css';
 import InfoCard from './InfoCard.js'
 import React, { Component } from 'react'
 import Topbar from './Topbar.js'
+import CountryItem from './CountryItem.js'
 
 Array.prototype.insert = function ( index, item ) {
   this.splice( index, 0, item );
 };
+
+
+function searchCountry() {
+  console.log("searchCountry");
+  fetch('https://covid19.mathdro.id/api/countries/'+document.querySelector(".country-searchbox").value).then(response => {
+    if (!response.ok){
+        console.log("you dumbass");
+        return 0;
+      }
+
+    return response.json()
+
+  })
+    .then(result => {
+      /*
+      this.setState({
+        countries: result,
+      });
+      console.log(this.state)
+      */
+      
+      console.log(result);
+    })
+}
 
 function addComas(text){
   let newText = text.toString().split("").reverse();
@@ -19,7 +44,8 @@ export class App extends Component {
   constructor(){
     super();
     this.state = {
-        data: []
+        data: [],
+        countries: []
     }
   }
 
@@ -54,12 +80,15 @@ export class App extends Component {
             </div>
           </div>
           <div className="card">
-            <h2>
-              <span className="material-icons">
-                flag
-              </span>
-              Country Stats
-            </h2>
+            <div className="search-container">
+              <input type="text" placeholder="Search for a country..." className="country-searchbox"/>
+              <button className="btn btn-circle" onClick={searchCountry}>
+                <span className="material-icons">
+                  search
+                </span>
+              </button>
+            </div>
+            <CountryItem/>
           </div>
         </div>
       </div>
