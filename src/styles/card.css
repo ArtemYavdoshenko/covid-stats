@@ -4,6 +4,7 @@
     justify-content: center;
     flex-direction: column;
     margin: 10px;
+    flex-wrap: nowrap;
 }
 
 .infocard .material-icons {
@@ -22,3 +23,4 @@
 .infocard .value {
     font-size: 24px;
 }
+

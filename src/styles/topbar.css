@@ -5,6 +5,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
 }
 
 h1 {
@@ -15,7 +19,16 @@ h1 {
     font-size: 30px;
 }
 
+.coronavirus {
+	animation: rotation 6s infinite linear;
+}
 
 
-
-
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
