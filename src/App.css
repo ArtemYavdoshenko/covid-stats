@@ -19,8 +19,19 @@ h2 {
 
 .card-holder {
     display: flex;
+    width: 100%;
+    
     align-items: center;
     justify-content: center;
+   
+}
+
+@media screen and (max-width:450px){
+    .card-holder {
+        flex-direction: column;
+
+    }
+
 }
 
 .search-container {
@@ -29,24 +40,14 @@ h2 {
     justify-content: center;
 }
 
-.country-searchbox {
-    border: none;
-    border-bottom: 2px solid rgba(0,0,0,0.15);
-    padding: 5px;
+.alert {
+    background-color: rgba(255,200,0,0.2);
+    color: #d16f19;
+    text-transform: uppercase;
+    padding: 12px 20px;
     margin: 5px;
-    width: 60%;
-    outline: none;
-}
-
-.btn {
-    border: none;
-    outline: none;
-    background: #D32F2F;
-    color: white;
-}
-
-.btn-circle {
-    border-radius: 50%;
-    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.15);
-
+    border-left: 4px solid #d16f19;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

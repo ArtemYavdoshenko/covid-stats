@@ -2,35 +2,15 @@ import './App.css';
 import InfoCard from './InfoCard.js'
 import React, { Component } from 'react'
 import Topbar from './Topbar.js'
-import CountryItem from './CountryItem.js'
+import CountryForm from './CountryForm.js'
+
 
 Array.prototype.insert = function ( index, item ) {
   this.splice( index, 0, item );
 };
 
 
-function searchCountry() {
-  console.log("searchCountry");
-  fetch('https://covid19.mathdro.id/api/countries/'+document.querySelector(".country-searchbox").value).then(response => {
-    if (!response.ok){
-        console.log("you dumbass");
-        return 0;
-      }
 
-    return response.json()
-
-  })
-    .then(result => {
-      /*
-      this.setState({
-        countries: result,
-      });
-      console.log(this.state)
-      */
-      
-      console.log(result);
-    })
-}
 
 function addComas(text){
   let newText = text.toString().split("").reverse();
@@ -45,23 +25,43 @@ export class App extends Component {
     super();
     this.state = {
         data: [],
-        countries: []
+        countries: false,
+        value: []
     }
   }
 
+  searchCountry() {
+    fetch('https://covid19.mathdro.id/api/countries/'+this.state.value).then(response => {
+      if (!response.ok){
+          return 0;
+        }
+
+      return response.json()
+
+    })
+      .then(result => {
+        this.setState({
+          countries: result,
+        });
+      })
+  }
+
   componentDidMount(){
-    console.log("componentDidMount got called")
     fetch('https://covid19.mathdro.id/api').then(response => response.json())
     .then(result => {
       this.setState({
         data: result,
       });
-      console.log("setState got called")
     })
+
+  }
+
+  onChangeValueHandler = (val) => {
+    this.setState({ value: val.target.value })         
+    setTimeout(()=>{this.searchCountry(val.target.value);},0)
   }
 
   render() {
-    console.log("Render got called")
     return (
       <div>
         <div className="App">
@@ -81,14 +81,22 @@ export class App extends Component {
           </div>
           <div className="card">
             <div className="search-container">
-              <input type="text" placeholder="Search for a country..." className="country-searchbox"/>
-              <button className="btn btn-circle" onClick={searchCountry}>
-                <span className="material-icons">
-                  search
-                </span>
-              </button>
+              <CountryForm value={this.state.value} onChangeValue={this.onChangeValueHandler} />
             </div>
-            <CountryItem/>
+            <div className="card-holder">
+            {this.state.countries ?
+              <div className="card-holder">
+              <InfoCard className="countryConfirmed" icon="done_all" text="Confirmed:" value={this.state.countries && this.state.countries.confirmed ? addComas(this.state.countries.confirmed.value) : "-"} bgcolor="#FFE600"/>
+            <InfoCard className="countryDeaths" icon="dangerous" text="Deaths:" value={this.state.countries && this.state.countries.deaths ? addComas(this.state.countries.deaths.value) : "-"} bgcolor="#FF5C00"/>
+            <InfoCard className="countryRecovered" icon="local_hospital" text="Recovered:" value={this.state.countries && this.state.countries.recovered ? addComas(this.state.countries.recovered.value) : "-"} bgcolor="#00DD3E"/>
+          </div>
+          : <p className="alert"><span className="material-icons">
+info
+</span>{this.state.countries===false ? "Start typing to see country stats" : "Country Not Found"}</p>
+          }
+            
+          
+            </div>
           </div>
         </div>
       </div>

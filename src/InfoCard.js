@@ -17,4 +17,7 @@ export class InfoCard extends Component {
     }
 }
 
+
+
+
 export default InfoCard
